@@ -1,0 +1,23 @@
+services:
+  test_db:
+    image: postgres:15
+    volumes:
+      - test_postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=test_postgres
+    ports:
+      - "5433:5433"
+    command: postgres -p 5433
+
+  test-redis:
+    image: redis:7
+    ports:
+      - "6380:6379"
+    volumes:
+      - redis_test_data:/data
+
+volumes:
+  redis_test_data:
+  test_postgres_data:
